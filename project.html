@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project | Ahmed Hamdi Hegazi</title><script>(function(){var t;try{t=localStorage.getItem("t")}catch(e){}if(!t){var m=(window.name||"").match(/theme:(dark|light)/);t=m&&m[1]}if(t)document.documentElement.dataset.theme=t})()</script><link rel="stylesheet" href="style.css"></head><body>
+<nav><div class="w"><a href="index.html"><b style="color:var(--ink)">Ahmed Hegazi</b></a><div><a href="index.html#projects">Projects</a><a href="index.html#certs">Certifications</a><a href="index.html#contact">Contact</a><button id="tg" aria-label="Toggle theme">☾</button></div></div></nav>
+<main class="w" id="m"></main><footer>© 2026 Ahmed Hamdi Hegazi</footer>
+<script src="data.js"></script><script>
+const q=new URLSearchParams(location.search).get("p");let i=P.findIndex(x=>x.s===q);if(i<0)i=0;const p=P[i],pv=P[(i+P.length-1)%P.length],nx=P[(i+1)%P.length];
+document.title=p.t+" | Ahmed Hamdi Hegazi";
+const B=(t,h)=>`<div class="blk rv"><h2>${t}</h2>${h}</div>`;
+m.innerHTML=`<div class="crumb"><a href="index.html#projects">← All projects</a></div>
+<div class="ph"><span class="eye">${p.cat}</span><h1>${p.t}</h1><p class="lead">${p.tag}</p></div>
+<div class="mx">${p.m.map((x,k)=>`<div class="st rv" style="--d:${k*70}ms">${cnt(x[0])}<span>${x[1]}</span></div>`).join("")}</div>
+<div class="pg"><div>
+${B("Overview",`<p>${p.ov}</p>`)}
+${B("Technical architecture pipeline",`<div class="pipe">${p.ar.map((n,k)=>`<div class="stg"><h4><i>${k+1}</i>${STG[k]}</h4>${n.map(x=>`<div class="nd">${x}</div>`).join("")}</div>`).join('<div class="arw">→</div>')}</div>`)}
+${B("Tech stack",`<div>${p.st.map(bd).join("")}</div>`)}
+${B("Key features",`<div class="ft">${p.f.map(x=>`<div>${x}</div>`).join("")}</div>`)}
+${B("Challenges solved",`<div class="ch">${p.c.map(x=>`<div>${x}</div>`).join("")}</div>`)}
+${p.x.map(x=>B(x[0],`<div class="xb">${x[1]}</div>`)).join("")}
+${p.im.length?B("Screenshots",`<div class="shots">${p.im.map(x=>`<a href="assets/${x}" target="_blank"><img src="assets/${x}" alt="${p.t} screenshot" loading="lazy"></a>`).join("")}</div>`):""}
+</div><aside class="side"><h4>Links</h4>${p.l.map((x,k)=>`<a class="btn ${k?"":"p"}" href="${x[1]}">${x[0]} →</a>`).join("")}</aside></div>
+<div class="pn"><a class="btn" href="project.html?p=${pv.s}">← ${pv.t}</a><a class="btn" href="project.html?p=${nx.s}">${nx.t} →</a></div>`;
+init();</script></body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ahmed Hamdi Hegazi | Data Analyst</title><meta name="description" content="Data Analyst portfolio: SQL, Power BI, Python, machine learning and LLM projects.">
+<script>(function(){var t;try{t=localStorage.getItem("t")}catch(e){}if(!t){var m=(window.name||"").match(/theme:(dark|light)/);t=m&&m[1]}if(t)document.documentElement.dataset.theme=t})()</script><link rel="stylesheet" href="style.css"></head><body>
+<nav><div class="w"><b>Ahmed Hegazi</b><div><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#certs">Certifications</a><a href="#contact">Contact</a><button id="tg" aria-label="Toggle theme">☾</button></div></div></nav>
+<header class="hero"><div class="w"><span class="eye">Data Analyst · BI Analyst · Egypt</span>
+<h1>I turn messy data into decisions people can act on.</h1>
+<p class="lead">Computer Science (Information Systems) graduate from the British University in Egypt, with very good high honors. I build SQL warehouses, Power BI dashboards, ML models and LLM pipelines end to end.</p>
+<div class="row"><a class="btn p" href="assets/resume.pdf" download>Download Resume</a><a class="btn" href="https://github.com/AHAH000">GitHub</a><a class="btn" href="https://www.linkedin.com/in/ahmed-hamdi-hegazi/">LinkedIn</a><a class="btn" href="#contact">Contact</a></div>
+<div class="strip" id="strip"></div><div class="hl" id="hl"></div></div></header>
+<section id="projects"><div class="w"><h2>Projects</h2><p class="sub">Each opens a case study with a pipeline diagram, features, stack and challenges.</p><div class="grid" id="g"></div></div></section>
+<section id="skills"><div class="w"><h2>Skills</h2><p class="sub">Grouped by how I use them.</p><div class="sk" id="sk"></div></div></section>
+<section id="certs"><div class="w"><h2>Certifications & Credentials</h2><p class="sub">Verification links where available.</p><div class="certs" id="c"></div></div></section>
+<section id="contact"><div class="w"><div class="ct rv"><h2>Let's talk</h2><p class="sub">Open to Data Analyst and BI Analyst roles.</p><div class="row"><a class="btn p" href="mailto:ahmed.hegazi03@outlook.com">ahmed.hegazi03@outlook.com</a><a class="btn" href="https://www.linkedin.com/in/ahmed-hamdi-hegazi/">LinkedIn</a><a class="btn" href="https://github.com/AHAH000">GitHub</a><a class="btn" href="assets/resume.pdf" download>Resume</a></div></div></div></section>
+<footer>© 2026 Ahmed Hamdi Hegazi</footer>
+<script src="data.js"></script><script>
+strip.innerHTML=["Python","PostgreSQL","SQL Server","Power BI","XGBoost","Docker","Vue.js"].map(bd).join("");
+hl.innerHTML=HL.map((h,k)=>`<div class="rv" style="--d:${k*80}ms"><a class="hlc" href="project.html?p=${h[3]}"><small>${h[0]}</small>${cnt(h[1])}<span>${h[2]}</span></a></div>`).join("");
+g.innerHTML=P.map((p,k)=>`<div class="rv" style="--d:${(k%3)*80}ms"><a class="card" href="project.html?p=${p.s}"><div class="th">${p.im[0]?`<img src="assets/${p.im[0]}" alt="" loading="lazy">`:p.ic}</div><div class="cb"><span class="tag">${p.cat}</span><h3>${p.t}</h3><p>${p.tag}</p><span class="more">View case study →</span></div></a></div>`).join("");
+sk.innerHTML=SK.map((s,k)=>`<div class="rv" style="--d:${k*70}ms"><h3>${s[0]}</h3>${s[1].map(bd).join("")}</div>`).join("");
+c.innerHTML=C.map((x,k)=>`<div class="cert rv" style="--d:${k*70}ms"><h3>${x.t}</h3><small>${x.o} · ${x.d}</small><div>${x.sk.map(s=>`<span class="chip">${s}</span>`).join("")}</div><div class="id">${x.id}</div>${x.u?`<a href="${x.u}">Verify credential →</a>`:""}</div>`).join("");
+init();</script></body></html>
