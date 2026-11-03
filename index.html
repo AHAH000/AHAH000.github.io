@@ -13,7 +13,7 @@
 <section id="contact"><div class="w"><div class="ct rv"><h2>Let's talk</h2><p class="sub">Open to Data Analyst and BI Analyst roles.</p><div class="row"><a class="btn p" href="mailto:ahmed.hegazi03@outlook.com">ahmed.hegazi03@outlook.com</a><a class="btn" href="https://www.linkedin.com/in/ahmed-hamdi-hegazi/">LinkedIn</a><a class="btn" href="https://github.com/AHAH000">GitHub</a><a class="btn" href="assets/resume.pdf" download>Resume</a></div></div></div></section>
 <footer>© 2026 Ahmed Hamdi Hegazi</footer>
 <script src="data.js"></script><script>
-strip.innerHTML=["Python","PostgreSQL","SQL Server","Power BI","XGBoost","Docker","Vue.js"].map(bd).join("");
+strip.innerHTML=["Python","PostgreSQL","Apache Airflow","dbt","Power BI","Docker","SQL Server"].map(bd).join("");
 hl.innerHTML=HL.map((h,k)=>`<div class="rv" style="--d:${k*80}ms"><a class="hlc" href="project.html?p=${h[3]}"><small>${h[0]}</small>${cnt(h[1])}<span>${h[2]}</span></a></div>`).join("");
 g.innerHTML=P.map((p,k)=>`<div class="rv" style="--d:${(k%3)*80}ms"><a class="card" href="project.html?p=${p.s}"><div class="th">${p.im[0]?`<img src="assets/${p.im[0]}" alt="" loading="lazy">`:p.ic}</div><div class="cb"><span class="tag">${p.cat}</span><h3>${p.t}</h3><p>${p.tag}</p><span class="more">View case study →</span></div></a></div>`).join("");
 sk.innerHTML=SK.map((s,k)=>`<div class="rv" style="--d:${k*70}ms"><h3>${s[0]}</h3>${s[1].map(bd).join("")}</div>`).join("");
