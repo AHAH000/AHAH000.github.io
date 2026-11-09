@@ -1,11 +1,61 @@
-const ICON={"Apache Airflow":"apacheairflow","dbt":"dbt","Python":"python","pandas":"pandas","NumPy":"numpy","Matplotlib":"matplotlib","Power BI":"powerbi","Power Query":"powerbi","Excel":"microsoftexcel","PostgreSQL":"postgresql","MySQL":"mysql","SQL Server":"microsoftsqlserver","SQL Server (SSMS)":"microsoftsqlserver","SQLite":"sqlite","MongoDB":"mongodb","Databricks":"databricks","Scikit-learn":"scikitlearn","XGBoost":"xgboost","Gemini API":"googlegemini","Flask":"flask","Node.js":"nodedotjs","Express":"express","Vue.js":"vuedotjs","Docker":"docker","Git":"git","Git / GitHub":"github","Postman":"postman","n8n":"n8n","n8n Cloud":"n8n","Jupyter":"jupyter","Railway":"railway","Tailwind":"tailwindcss","Google Sheets API":"googlesheets","Hugging Face":"huggingface","Axios":"axios","Reddit API":"reddit","yfinance":"yahoo","Bootstrap":"bootstrap"};
+const ICON={"Apache Airflow":"apacheairflow","dbt":"dbt","Python":"python","pandas":"pandas","NumPy":"numpy","Matplotlib":"matplotlib","Power BI":"powerbi","Power Query":"powerbi","Excel":"microsoftexcel","PostgreSQL":"postgresql","MySQL":"mysql","SQL Server":"microsoftsqlserver","SQL Server (SSMS)":"microsoftsqlserver","SQLite":"sqlite","MongoDB":"mongodb","Databricks":"databricks","Scikit-learn":"scikitlearn","XGBoost":"xgboost","Gemini API":"googlegemini","Flask":"flask","Node.js":"nodedotjs","Express":"express","Vue.js":"vuedotjs","Docker":"docker","Git":"git","Git / GitHub":"github","Postman":"postman","n8n":"n8n","n8n Cloud":"n8n","Jupyter":"jupyter","Railway":"railway","Tailwind":"tailwindcss","Google Sheets API":"googlesheets","Hugging Face":"huggingface","Axios":"axios","Reddit API":"reddit","yfinance":"yahoo","Bootstrap":"bootstrap","LightGBM": "lightgbm",
+"Kaggle": "kaggle",
+"pytest": "pytest"};
 const ic=n=>ICON[n]?`<img src="https://cdn.simpleicons.org/${ICON[n]}" alt="" loading="lazy" onerror="this.remove()">`:"";
 const bd=n=>`<span class="chip">${ic(n)}${n}</span>`;
 const STG=["Ingestion / Trigger","Processing / Extraction","Storage / Destination","Analysis & Presentation"];
-const SK=[["Core Languages",["Python","SQL","DAX"]],["Analysis & Visualization",["Power BI","Excel","pandas","NumPy","Matplotlib","Power Query","EDA","KPI Definition"]],["Databases & SQL",["PostgreSQL","dbt","MySQL","SQL Server","SQLite","MongoDB","Databricks"]],["ML & AI",["Scikit-learn","XGBoost","Gemini API","Feature Engineering","Regression","LLM Pipelines"]],["Web & Infrastructure",["Apache Airflow","Docker","Vue.js","Node.js","Flask","Git / GitHub","Postman","n8n","Jupyter"]]];
+const SK=[
+  ["Core Languages",["Python","SQL","DAX"]],
+  ["Analysis & Visualization",["Power BI","Excel","pandas","NumPy","Matplotlib","Power Query","EDA","KPI Definition"]],
+  ["Databases & SQL",["PostgreSQL","dbt","MySQL","SQL Server","SQLite","MongoDB","Databricks"]],
+  ["ML & AI",["Scikit-learn","XGBoost","LightGBM","Time Series Forecasting","Gemini API","Feature Engineering","Regression","LLM Pipelines"]],
+  ["Web & Infrastructure",["Apache Airflow","Docker","Vue.js","Node.js","Flask","Git / GitHub","pytest","Postman","n8n","Jupyter"]]
+];
 const HL=[["SQL Data Modeling","4,250","recommendation pairs served from a star-schema SQL Server warehouse","product-recommendation"],["ML Pipeline Engineering","0.905","R² on player market value, vs 0.435 for a recreated published baseline","market-value-prediction"],["Interactive BI Dashboards","29.2%","avg tech net margin surfaced in a 3-page executive Power BI report","financial-health-tracker"],["LLM Integration","93.6%","agreement with human labels on decisive Gemini predictions","arabic-restaurant-reviews"]];
 const ul=a=>"<ul>"+a.map(x=>`<li>${x}</li>`).join("")+"</ul>";
 const P=[
+{
+  s: "m5-demand-forecast",
+  cat: "Machine Learning",
+  ic: "📉",
+  t: "M5 Demand Forecasting",
+  tag: "Global LightGBM vs Intermittent-Demand Baselines.",
+  ov: "A machine learning forecasting project using the Kaggle M5 dataset (Walmart store CA_1). It forecasts 28-day daily unit sales for 3,049 products, honestly comparing a global LightGBM model against classical baselines like TSB, moving averages, and weekday means to measure where ML actually provides business value.",
+  m: [
+    ["0.808", "Weighted RMSSE (LightGBM)"],
+    ["3.0%", "gain over TSB on revenue-weighted metric"],
+    ["3,049", "products forecasted"],
+    ["71.9%", "intermittent demand items"],
+    ["5", "rolling-origin folds backtested"]
+  ],
+  f: [
+    "Evaluated 5 rolling-origin folds across 28-day horizons (540 training days per fold)",
+    "Engineered features using 56-day rolling means, lags, price changes, SNAP days, and calendar events",
+    "Trained a global LightGBM model using a Tweedie objective (variance power 1.1) to handle count data with many zeros",
+    "Benchmarked against 7 baselines (naive, moving averages, Croston, TSB) across Syntetos-Boylan demand classes",
+    "Analyzed win rates by demand class, revealing LightGBM wins primarily on high-revenue, smooth series"
+  ],
+  st: ["Python", "LightGBM", "pandas", "NumPy", "Jupyter", "pytest", "Kaggle", "Git"],
+  ar: [
+    ["Kaggle M5 Dataset (CA_1 Store)", "Calendar, Prices, Unit Sales"],
+    ["Feature Engineering", "Lags, Rolling Means, Price Changes"],
+    ["5 Rolling-Origin Folds", "Global LightGBM (Tweedie) vs Baselines"],
+    ["Evaluation & Analysis", "RMSSE, WAPE, Bias by Demand Class"]
+  ],
+  c: [
+    "Dealing with extreme sparsity: 71.9% of the series were intermittent and 17.5% lumpy, making it very difficult for ML to beat methods explicitly built for sparse demand like TSB.",
+    "Ensuring strict no-leakage in direct 28-day forecasting by forcing all sales features to be at least 28 days old, meaning the model could not rely on recent daily patterns.",
+    "Comparing global vs item-level performance: LightGBM won on the revenue-weighted metric (68%), but baseline TSB matched or won on intermittent items and total store bias."
+  ],
+  x: [
+    ["Results by Demand Class", "<p>Using the Syntetos-Boylan scheme, the series were split into Smooth, Erratic, Intermittent, and Lumpy. LightGBM dominated on Smooth (75% win rate) and Erratic (62%), but lost to TSB on Intermittent and Lumpy items.</p>"],
+    ["Feature Importance", "<p>The model acts mostly as a smoothed level predictor. Top features were the 56-, 28- and 14-day rolling means, followed by price and 7-day mean. Because every feature must be at least 28 days old for direct forecasting, calendar and SNAP features added almost nothing in the final fold.</p>"]
+  ],
+  im: ["06_feature_importance.png","09_win_rate_by_class.png"], 
+  l: [
+    ["GitHub", "https://github.com/AHAH000/m5-demand-forecast.git"]
+  ]
+},    
 {s:"ecommerce-data-platform",cat:"Data Engineering + BI",ic:"🛒",t:"Olist E-Commerce Data Platform",tag:"End-to-end Airflow & dbt data warehouse with Power BI reporting.",
 ov:"An end-to-end e-commerce data pipeline and warehouse built on the public Olist Brazilian e-commerce dataset (99,441 orders). Airflow orchestrates daily idempotent order ingestion into PostgreSQL, dbt models raw data into staging views and star-schema analytics marts with quality assertions, and Power BI delivers executive reporting on revenue, delivery SLAs, and customer satisfaction.",
 m:[["R$13.50M","revenue tracked"],["99K","orders processed"],["775","daily DAG backfill runs"],["96.3%","delivered on time"],["12.5 days","avg delivery time"],["4.09 / 5","avg review score"]],
